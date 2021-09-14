@@ -19,8 +19,15 @@ func main() {
 }
 
 func mainLoop(eventWatcher *keyboard.KeyboardEventBuffer) {
-	gameController := game.New(20, 20)
-	canvas := plot.NewConsoleCanvas(20, 20)
+	gameController := game.New(10, 10)
+	canvas := plot.NewConsoleCanvas(10, 10)
+
+	go func() {
+		for {
+			time.Sleep(time.Millisecond * 400)
+			gameController.MoveDown()
+		}
+	}()
 
 	for {
 		events := eventWatcher.ListAndClear()
@@ -30,6 +37,6 @@ func mainLoop(eventWatcher *keyboard.KeyboardEventBuffer) {
 		canvas.SetCubes(gameController.GetCubes())
 		canvas.Flush()
 
-		time.Sleep(time.Millisecond * 100)
+		time.Sleep(time.Millisecond * 10)
 	}
 }
