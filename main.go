@@ -1,39 +1,35 @@
 package main
 
 import (
-	"image"
+	"log"
 	"time"
 
-	"github.com/fatih/color"
+	"github.com/wang-sy/tetris/game"
+	"github.com/wang-sy/tetris/keyboard"
 	"github.com/wang-sy/tetris/plot"
 )
 
 func main() {
-	mainLoop()
+	events, err := keyboard.NewKeyboardEventBuffer()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	mainLoop(events)
 }
 
-func mainLoop() {
+func mainLoop(eventWatcher *keyboard.KeyboardEventBuffer) {
+	gameController := game.New(20, 20)
 	canvas := plot.NewConsoleCanvas(20, 20)
 
-	cubes := []*plot.Cube{
-		{
-			Position: image.Point{1, 1},
-			Color:    color.New(color.FgBlue),
-		},
-	}
-
 	for {
-		time.Sleep(time.Millisecond * 100)
+		events := eventWatcher.ListAndClear()
+		gameController.ProcessEvents(events)
 
 		canvas.Clear()
-		canvas.SetCubes(cubes)
+		canvas.SetCubes(gameController.GetCubes())
 		canvas.Flush()
 
-		setCube(cubes)
+		time.Sleep(time.Millisecond * 100)
 	}
-}
-
-func setCube(cubes []*plot.Cube) {
-	cubes[0].Position.X += 1
-	cubes[0].Position.X %= 20
 }

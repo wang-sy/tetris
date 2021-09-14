@@ -51,9 +51,9 @@ func (c *consoleCanvas) Flush() {
 	clearConsole()
 
 	rawScreen := ""
-	for i := 0; i < c.xSize; i++ {
-		for j := 0; j < c.ySize; j++ {
-			rawScreen += c.cubes[i][j]
+	for i := 0; i < c.ySize; i++ {
+		for j := 0; j < c.xSize; j++ {
+			rawScreen += c.cubes[j][i]
 		}
 		rawScreen += "\n"
 	}
