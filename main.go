@@ -29,7 +29,7 @@ func mainLoop(eventWatcher *keyboard.KeyboardEventBuffer) {
 
 	go func() {
 		for {
-			time.Sleep(time.Millisecond * 4000)
+			time.Sleep(time.Millisecond * 400)
 			gameController.MoveDown()
 		}
 	}()

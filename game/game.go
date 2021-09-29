@@ -5,7 +5,7 @@ import (
 	"log"
 
 	"github.com/eiannone/keyboard"
-	"github.com/fatih/color"
+
 	"github.com/wang-sy/tetris/game/shape"
 	"github.com/wang-sy/tetris/plot"
 )
@@ -111,7 +111,7 @@ func (g *Game) mergeActiveShapeToStatic() {
 }
 
 func (g *Game) generateNewActiveShape() {
-	g.activeShape = shape.NewRandomShape(image.Point{g.xSize / 2, 0}, color.New(color.FgBlue))
+	g.activeShape = shape.NewRandomShape(image.Point{g.xSize / 2, 0}, newRandomColor())
 
 	if !g.validShapePos(g.activeShape) {
 		log.Fatal("game over")
