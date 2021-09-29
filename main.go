@@ -9,6 +9,11 @@ import (
 	"github.com/wang-sy/tetris/plot"
 )
 
+const (
+	xSize = 10
+	ySize = 10
+)
+
 func main() {
 	events, err := keyboard.NewKeyboardEventBuffer()
 	if err != nil {
@@ -19,8 +24,8 @@ func main() {
 }
 
 func mainLoop(eventWatcher *keyboard.KeyboardEventBuffer) {
-	gameController := game.New(10, 10)
-	canvas := plot.NewConsoleCanvas(10, 10)
+	gameController := game.New(xSize, ySize)
+	canvas := plot.NewConsoleCanvas(xSize, ySize)
 
 	go func() {
 		for {

@@ -111,7 +111,7 @@ func (g *Game) mergeActiveShapeToStatic() {
 }
 
 func (g *Game) generateNewActiveShape() {
-	g.activeShape = shape.NewLine(image.Point{g.xSize / 2, 0}, color.New(color.FgBlue))
+	g.activeShape = shape.NewLineShape(image.Point{g.xSize / 2, 0}, color.New(color.FgBlue))
 
 	if !g.validShapePos(g.activeShape) {
 		log.Fatal("game over")
