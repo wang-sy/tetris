@@ -4,6 +4,7 @@ import (
 	"image"
 
 	"github.com/fatih/color"
+
 	"github.com/wang-sy/tetris/plot"
 )
 
